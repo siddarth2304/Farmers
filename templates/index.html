@@ -1,0 +1,420 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Farmers' Empowerment App</title>
+      <link rel="stylesheet" href="static/styles.css">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <style> 
+          /* Video container styling */ 
+          .video-gallery-section { 
+              margin-top: 50px; 
+              padding: 20px; 
+              background-color: #f5f5f5; 
+              border-top: 2px solid #ddd; 
+          } 
+          .video-gallery-container { 
+              display: flex; 
+              overflow-x: auto; 
+              scroll-snap-type: x mandatory; 
+              gap: 20px; 
+              padding: 20px 0; 
+          } 
+          .video-card { 
+              flex: 0 0 auto; 
+              width: 320px; 
+              scroll-snap-align: start; 
+              background: #fff; 
+              box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+              border-radius: 8px; 
+              overflow: hidden; 
+          } 
+          .video-card iframe { 
+              width: 100%; 
+              height: 180px; 
+              border: none; 
+          } 
+          /* Optional scrollbar styling */ 
+          .video-gallery-container::-webkit-scrollbar { 
+              height: 8px; 
+          } 
+          .video-gallery-container::-webkit-scrollbar-thumb { 
+              background-color: #888; 
+              border-radius: 4px; 
+          } 
+          .video-gallery-container::-webkit-scrollbar-thumb:hover { 
+              background-color: #555; 
+          } 
+      </style>
+      <!-- Google Translate Widget -->
+      <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+      </script>
+      <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+      <style>
+          /* Hide the Google Translate widget dropdown */
+          #google_translate_element {
+              display: none;
+          }
+          .goog-te-banner-frame {
+              display: none !important;
+          }
+          body {
+              top: 0px !important; 
+          }
+          /* Dropdown styling */
+          .dropdown-content {
+              display: none;
+              position: absolute;
+              background-color: #f9f9f9;
+              min-width: 160px;
+              box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+              z-index: 1;
+          }
+
+          .dropdown-content a {
+              color: black;
+              padding: 12px 16px;
+              text-decoration: none;
+              display: block;
+          }
+
+          .dropdown-content a:hover {background-color: #f1f1f1;}
+          
+          .dropdown:hover .dropdown-content {
+              display: block;
+          }
+          /* Existing styles here */
+
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.chatbot {
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+.chat-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages {
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+#user-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+      </style>
+  </head>
+  <body>
+      <div class="sidebar">
+          <h1 class="logo">Farmers' App</h1>
+          <ul class="nav-links">
+              <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+              <li><a href="#features"><i class="fas fa-leaf"></i> Features</a></li>
+              <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+              <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+              <!-- Add Languages Dropdown in Sidebar -->
+              <li class="dropdown">
+                  <a href="#"><i class="fas fa-globe"></i> Languages <i class="fas fa-chevron-down"></i></a>
+                  <ul class="dropdown-content">
+                      <li><a href="#" onclick="translatePage('en')">English</a></li>
+                      <li><a href="#" onclick="translatePage('hi')">Hindi</a></li>
+                      <li><a href="#" onclick="translatePage('ta')">Tamil</a></li>
+                      <li><a href="#" onclick="translatePage('te')">Telugu</a></li>
+                      <li><a href="#" onclick="translatePage('ml')">Malayalam</a></li>
+                      <li><a href="#" onclick="translatePage('kn')">Kannada</a></li>
+                  </ul>
+              </li>
+          </ul>
+          <a href="#features" class="cta-button">Get Started</a>
+      </div>
+      
+      <div class="main-content">
+          <header id="home" class="hero">
+              <div class="hero-content">
+                  <h1>Empowering Farmers with Technology</h1>
+                  <p>Your ultimate companion for managing crops, weather, and market prices.</p>
+                  <a href="#features" class="cta-button">Get Started</a>
+              </div>
+          </header>
+
+ <section id="features" class="features-section"> 
+    <h2>Features</h2> 
+    <p>Our platform equips you with the tools to make informed, confident decisions in every season. Here’s how we can help:</p> 
+    <br> 
+    <div class="features-grid"> 
+        <div class="feature-card"> 
+            <h3>🌦 Real-Time Weather Alerts</h3> 
+            <p>Receive accurate, location-specific weather updates to help you plan ahead and protect your crops from unexpected conditions. Stay prepared for everything from rain to frost with tailored advice.</p> 
+        </div> 
+        <div class="feature-card"> 
+            <h3>🐛 Sustainable Pest Control</h3> 
+            <p>Access eco-friendly pest control techniques, specific to your crop and region, to safeguard your yield naturally. Our expert guidance helps you manage pests efficiently and sustainably.</p> 
+            <!-- Learn More Button -->
+            <a href="/pest" class="learn-more-button">Learn More</a>
+        </div> 
+        <div class="feature-card"> 
+            <h3>📈 Live Market Price Tracking</h3> 
+            <p>Make smarter selling decisions with live updates on market prices for crops in your area. Stay informed about market trends to maximize your profitability with real-time data.</p> 
+             <a href="/marketprice" class="learn-more-button">Know More</a>
+        </div> 
+    </div> 
+</section>
+
+          <section id="weather" class="weather-section">
+              <h2>Weather Information</h2>
+              <form action="/weather" method="GET" class="weather-form">
+                  <input type="text" name="city" placeholder="Enter city name" required>
+                  <button type="submit">Get Weather</button>
+              </form>
+
+              {% if weather %}
+                  <h3>Weather in {{ weather['name'] }}</h3>
+                  <p>Temperature: {{ weather['main']['temp'] }} °C</p>
+                  <p>Weather: {{ weather['weather'][0]['description'] }}</p>
+              {% else %}
+                  <p>Weather data is not available at the moment.</p>
+              {% endif %}
+          </section>
+          
+          <section id="upload-image" class="upload-section">
+    <h2>Upload Image for Analysis</h2>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Upload Image</button>
+    </form>
+
+    <!-- Display uploaded image if available -->
+    {% if uploaded_image %}
+        <h3>Uploaded Image:</h3>
+        <img src="{{ uploaded_image }}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+    {% endif %}
+
+    <!-- Display image labels if available -->
+    {% if labels %}
+        <h3>Image Labels:</h3>
+        <ul>
+            {% for label in labels %}
+                <li>{{ label }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>
+
+          
+          <section id="video-gallery" class="video-gallery-section"> 
+              <h2>Video Gallery</h2> 
+              <div class="video-gallery-container"> 
+                  <!-- Video 1 --> 
+                  <div class="video-card"> 
+                      <iframe width="" height="" src="https://www.youtube.com/embed/yzs-LOJ1w08?si=nUdzSSu33DeO_GhQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+                  </div> 
+                  <!-- Video 2 --> 
+                  <div class="video-card"> 
+                  <iframe width="" height="" src="https://www.youtube.com/embed/-K80djZC8y0?si=dPAx3piNOTfe42cN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+                  </div> 
+                  <!-- Video 3 --> 
+                  <div class="video-card"> 
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/hCMFZ8FCLLc?si=It7AZtidVaqfZ_oe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+                  </div> 
+  
+                  <!-- Video 5--> 
+                  <div class="video-card"> 
+                      <iframe width="" height="" src="https://www.youtube.com/embed/0US13rBCa5I?si=q7Q1LRS6Do-cYbOs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+                  </div> 
+                                  <div> 
+                      <iframe width="" height="" src="https://www.youtube.com/embed/GHIZWXsD_gI?si=tRhe23kNHvy1Bbhk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+                  </div> 
+                  <!-- Video 6 --> 
+                  <div class="video-card"> 
+                      <iframe width="" height="" src="https://www.youtube.com/embed/Xej22GsLLQA?si=9geD47OvtijMy1lU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+                  </div> 
+                  <!-- Video 7--> 
+                  <div class="video-card"> 
+                      <iframe width="" height="" src="https://www.youtube.com/embed/c5pekMjAapo?si=ABa_NIN9CpuA6neC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </div> 
+              </div> 
+          </section>
+          <section id="about" class="about-section"> 
+      <h2>About Us</h2> 
+      <p> 
+          Welcome to our platform, where innovation meets agriculture. Our mission is to empower farmers by bridging the gap between traditional farming practices and modern technology. We strive to provide farmers with user-friendly tools and insights to enhance productivity, adapt to changing conditions, and promote sustainable agriculture practices. 
+      </p> 
+      <p> 
+          Our project is designed with farmers' needs at its core. By offering real-time information on weather patterns, up-to-date market prices, effective pest management solutions, and best practices in agriculture, we aim to support farmers in making informed decisions that lead to healthier crops, increased yields, and improved livelihoods. 
+      </p> 
+      <p>
+      We believe that technology should be accessible to all, regardless of location or technical background. Our team is committed to building a platform that’s not only functional but also easy to use, with resources that address the challenges faced by farmers every day. 
+      </p> 
+      <p> 
+          Join us in this journey toward a sustainable future where every farmer has the knowledge and tools needed to thrive. Together, we can build a resilient agricultural community ready to tackle tomorrow's challenges. 
+      </p> 
+  </section>
+
+          <section id="contact" class="contact-section">
+              <h2>Contact Us</h2>
+              <p>Have questions? Reach out to us at <a href="mailto:info@farmersapp.com">info@farmersapp.com</a></p>
+          </section>
+          <!-- Chatbot Icon -->
+    <div class="chat-icon" onclick="toggleChatbot()">💬</div>
+
+    <!-- Chatbot Interface -->
+    <div id="chatbot" class="chatbot">
+        <div class="chat-header">
+            <span>Farmer Chatbot</span>
+            <button onclick="toggleChatbot()">X</button>
+        </div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <input type="text" id="user-input" placeholder="Ask me something..." onkeydown="if(event.key === 'Enter') getChatResponse()">
+    </div>
+</div>
+
+          <footer>
+              <p>&copy; 2024 Farmers' Empowerment App. All rights reserved.</p>
+          </footer>
+      </div>
+
+      <!-- Google Translate element - hidden -->
+      <div id="google_translate_element"></div>
+
+      <!-- JavaScript to trigger translation -->
+      <script>
+          // Function to trigger translation when a language is selected
+          function translatePage(languageCode) {
+              var googleTranslateForm = document.querySelector('.goog-te-combo');
+              if (googleTranslateForm) {
+                  googleTranslateForm.value = languageCode;
+                  googleTranslateForm.dispatchEvent(new Event('change'));
+              }
+          }
+
+          // Smooth scrolling for sidebar links
+          document.querySelectorAll('.nav-links a').forEach(anchor => {
+              anchor.addEventListener('click', function(event) {
+                  event.preventDefault();
+                  const targetId = this.getAttribute('href').substring(1);
+                  document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+              });
+          });
+      </script>
+      <!-- Optional JavaScript for smooth scrolling with mouse wheel --> 
+      <script> 
+          const container = document.querySelector('.video-gallery-container'); 
+          container.addEventListener('wheel', (event) => { 
+              event.preventDefault(); 
+              container.scrollBy({ 
+                  left: event.deltaY < 0 ? -100 : 100, 
+              }); 
+          }); 
+      </script>
+     <script>
+     // Function to toggle chatbot visibility
+function toggleChatbot() {
+    const chatbot = document.getElementById("chatbot");
+    chatbot.style.display = chatbot.style.display === "none" ? "block" : "none";
+}
+
+// Basic responses in multiple languages
+const responses = {
+    "weather": {
+        "en": "Please provide the city name for weather updates.",
+        "hi": "मौसम अपडेट के लिए कृपया शहर का नाम बताएं।",
+        "te": "వాతావరణం సమాచారం కోసం నగరం పేరు ఇవ్వండి.",
+        "kn": "ಹವಾಮಾನ تازهಗಳನ್ನು ಪಡೆಯಲು ನಗರದ ಹೆಸರನ್ನು ನಮೂದಿಸಿ.",
+        "ml": "വേദന പുതുക്കലുകൾക്കായി നഗരത്തിന്റെ പേര് നൽകുക."
+    },
+    "soil health": {
+        "en": "For soil health recommendations, consult local agricultural experts.",
+        "hi": "मिट्टी स्वास्थ्य अनुशंसाओं के लिए स्थानीय कृषि विशेषज्ञों से संपर्क करें।",
+        "te": "భూమి ఆరోగ్యం కోసం స్థానిక వ్యవసాయ నిపుణులను సంప్రదించండి.",
+        "kn": "ಮಣ್ಣು ಆರೋಗ್ಯ ಸಲಹೆಗಳಿಗೆ ಸ್ಥಳೀಯ ಕೃಷಿ ತಜ್ಞರನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+        "ml": "മണ്ണിന്റെ ആരോഗ്യത്തിന് പ്രാദേശിക കൃഷി വിദഗ്ധരുമായി ബന്ധപ്പെടുക."
+    }
+    
+};
+
+// Function to get chatbot response
+function getChatResponse() {
+    const userInput = document.getElementById("user-input").value.toLowerCase();
+    const chatMessages = document.getElementById("chat-messages");
+    const lang = "en"; // Set to 'hi', 'te', 'kn', or 'ml' as needed.
+
+    const response = responses[userInput] ? responses[userInput][lang] : "Sorry, I didn't understand.";
+    chatMessages.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
+    chatMessages.innerHTML += `<div><strong>Bot:</strong> ${response}</div>`;
+    document.getElementById("user-input").value = "";
+}
+
+// Weather API call function
+function getWeather() {
+    const city = document.getElementById("city-input").value;
+    const apiKey = "e4e4415452b1d3cdb9ef931825ccc876"; // Make sure to replace this with your actual API key
+    console.log(`Fetching weather data for: ${city}`); // Log the city being searched
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const tempCelsius = (data.main.temp - 273.15).toFixed(2);
+            document.getElementById("weather-result").innerHTML = 
+                `The weather in ${city} is ${tempCelsius}°C with ${data.weather[0].description}.`;
+        })
+        .catch(error => {
+            console.error("Error fetching weather data:", error); // Log the error
+            document.getElementById("weather-result").innerHTML = "Weather data not available. Please check the city name.";
+        });
+}
+
+
+     </script>
+     <script>
+     function navigateToPest(){
+     window.location.href='/pest.html';
+     }
+     </script>
+      <script>
+     function navigateToMarketPrice(){
+     window.location.href='/marketprice.html';
+     }
+     </script>
+      
+  </body>
+  </html>

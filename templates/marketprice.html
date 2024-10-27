@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Prices</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+    /* Reset some default browser styles */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header styles */
+header {
+    background: #4CAF50;
+    color: white;
+    padding: 20px 10%;
+    text-align: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+/* Main content styles */
+main {
+    padding: 20px 10%;
+}
+
+h2 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+/* Market prices section styles */
+.market-prices-section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.market-prices-container {
+    overflow-x: auto;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: #4CAF50;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>Market Prices</h1>
+        <a href="/">Back to Home</a>
+    </header>
+    <main>
+        <h2>Current Market Prices</h2>
+        <section id="market-prices" class="market-prices-section"> 
+            <h2>2024 Agricultural Market Prices</h2> 
+            <p>Stay informed with the latest market prices for crops in your area.</p> 
+            <div class="market-prices-container"> 
+                <table> 
+                    <thead> 
+                        <tr> 
+                            <th>Crop</th> 
+                            <th>Region</th> 
+                            <th>Price (per kg)</th> 
+                            <th>Last Updated</th> 
+                        </tr> 
+                    </thead> 
+                    <tbody id="pricesTableBody"> 
+                        <tr> 
+                            <td>Wheat</td> 
+                            <td>North</td> 
+                            <td>₹30.00</td> 
+                            <td>2024-10-20</td> 
+                        </tr> 
+                        <tr> 
+                            <td>Rice</td> 
+                            <td>East</td> 
+                            <td>₹35.00</td> 
+                            <td>2024-10-21</td> 
+                        </tr> 
+                        <tr> 
+                            <td>Corn</td> 
+                            <td>West</td> 
+                            <td>₹25.00</td> 
+                            <td>2024-10-19</td> 
+                        </tr> 
+                        <tr> 
+                            <td>Barley</td> 
+                            <td>South</td> 
+                            <td>₹28.00</td> 
+                            <td>2024-10-18</td> 
+                        </tr> 
+                        <tr> 
+                            <td>Soybeans</td> 
+                            <td>Central</td> 
+                            <td>₹40.00</td> 
+                            <td>2024-10-22</td> 
+                        </tr> 
+                        <tr> 
+                            <td>Potatoes</td> 
+                            <td>North</td> 
+                            <td>₹20.00</td> 
+                            <td>2024-10-20</td> 
+                        </tr> 
+                        <tr> 
+                            <td>Tomatoes</td> 
+                            <td>East</td> 
+                            <td>₹30.00</td> 
+                            <td>2024-10-21</td> 
+                        </tr> 
+                        <tr> 
+                            <td>Carrots</td> 
+                            <td>West</td> 
+                            <td>₹22.00</td> 
+                            <td>2024-10-19</td> 
+                        </tr> 
+                        <tr> 
+                            <td>Onions</td> 
+                            <td>South</td> 
+                            <td>₹24.00</td> 
+                            <td>2024-10-18</td> 
+                        </tr> 
+                        <tr> 
+                            <td>Garlic</td> 
+                            <td>Central</td> 
+                            <td>₹30.00</td> 
+                            <td>2024-10-22</td> 
+                        </tr> 
+                    </tbody> 
+                </table> 
+            </div> 
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Farmers' Support App</p>
+    </footer>
+</body>
+</html>
+

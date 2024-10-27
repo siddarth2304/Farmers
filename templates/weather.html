@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        h1 {
+            color: #00796b;
+            text-align: center;
+        }
+        h2 {
+            color: #004d40;
+            margin-top: 20px;
+            border-bottom: 2px solid #00796b;
+            padding-bottom: 10px;
+        }
+        .weather-info, .forecast {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #b2dfdb;
+            border-radius: 8px;
+            background-color: #b2ebf2;
+        }
+        .weather-info p, .forecast p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .forecast div {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #4db6ac;
+            border-radius: 5px;
+            background-color: #ffffff;
+            transition: background-color 0.3s;
+        }
+        .forecast div:hover {
+            background-color: #e0f2f1;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Current Weather in {{ current_weather.name }}</h1>
+        <div class="weather-info">
+            <p><strong>Temperature:</strong> {{ current_weather.main.temp }} °C</p>
+            <p><strong>Weather:</strong> {{ current_weather.weather[0].description }}</p>
+            <p><strong>Humidity:</strong> {{ current_weather.main.humidity }}%</p>
+            <p><strong>Wind Speed:</strong> {{ current_weather.wind.speed }} m/s</p>
+        </div>
+
+        <h2>3-Day Forecast</h2>
+        <div class="forecast">
+            {% for day in forecast.list %}
+                <div>
+                    <p><strong>Date:</strong> {{ day.dt | unix_to_date }}</p>
+                    <p><strong>Temperature:</strong> {{ day.main.temp }} °C</p>
+                    <p><strong>Weather:</strong> {{ day.weather[0].description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer>
+        © 2024 Weather App | Designed by Team Cobra
+    </footer>
+</body>
+</html>
+

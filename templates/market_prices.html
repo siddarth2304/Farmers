@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Prices</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Market Prices</h1>
+        <a href="/">Back to Home</a>
+    </header>
+    <main>
+        <h2>Current Market Prices</h2>
+        <ul>
+            {% for crop, price in prices.items() %}
+                <li>{{ crop }}: {{ price }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 Farmers' Support App</p>
+    </footer>
+</body>
+</html>
